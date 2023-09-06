@@ -3,7 +3,7 @@
 Simple integration of **[yt-dlp](https://github.com/yt-dlp/yt-dlp)** into the context menu of **Windows Explorer**.
 
 - The script downloads all video links from the clipboard (should be separated by newlines or commas).
-- It works with playlists.
+- Works with playlists.
 - Works not only with YouTube, but also with Vimeo, TikTok, etc.
 
 
@@ -35,9 +35,9 @@ Run `windows/uninstall.reg`
 1. Copy the link(s).
 2. Right-click where you want to download it. Select the desired quality.
 
-<p align="left">
-    <img  src="./.github/1step.png" width="45%">
-    <img  src="./.github/2step.png" width="45%">
+<p align="center">
+    <img  src="./.github/1step.png" width="46%">
+    <img  src="./.github/2step.png" width="46%">
 </p>
 
 
@@ -58,7 +58,7 @@ MULTIPLE_FILES = "%(autonumber)s. %(title)s.%(ext)s"
 
 # yt-dlp (youtube-dl) options
 # Options: https://github.com/yt-dlp/yt-dlp#usage-and-options
-OPTS = [ 
+OPTIONS = [ 
     '--ignore-errors',
     '--no-check-certificates',
     '--embed-thumbnail',
