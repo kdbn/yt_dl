@@ -63,15 +63,16 @@ def download():
         help="Desirable resolution of videos"
     )
     
-    args, cmd_opts = parser.parse_known_args()
-    opts = []
+    args, cmd_options = parser.parse_known_args()
+    options = []
 
     # Get links from clipboard
     links = clipboard.paste().replace(",", "\n").splitlines()
-    no_playlists = not contain_playlist(links)
+    
 
+    no_playlists = not contain_playlist(links)
     if no_playlists:
-        opts.append("--no-playlist")
+        options.append("--no-playlist")
 
 
     if (len(links) <= 1 and no_playlists):
@@ -82,16 +83,18 @@ def download():
 
     ffmpeg = ffmpeg_path()
     if(ffmpeg):
-        opts.extend(['--ffmpeg-location', ffmpeg])
-        #opts.extend(['--downloader', 'ffmpeg'])
-        #opts.extend(['--downloader-args', 'ffmpeg:-loglevel error'])
+        options.extend(['--ffmpeg-location', ffmpeg])
+        #options.extend(['--downloader', 'ffmpeg'])
+        #options.extend(['--downloader-args', 'ffmpeg:-loglevel error'])
 
-    opts.extend(['-P', os.getcwd()]) # directory output path
-    opts.extend(['-o', output])
-    opts.extend(['-f', video_format(args.resolution)])
+
+    options.extend(['-P', os.getcwd()]) # directory output path
+    options.extend(['-o', output])
+    options.extend(['-f', video_format(args.resolution)])
+
 
     try:
-        args = opts + config.OPTIONS + cmd_opts + ['--'] + links
+        args = options + config.OPTIONS + cmd_options + ['--'] + links
         #print(args)
         youtube_dl.main(args)
     except (KeyboardInterrupt) as err:
